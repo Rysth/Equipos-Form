@@ -148,7 +148,7 @@ function createFieldset(teamGroup) {
   const teamsHTML = teamGroup.teams
     .map(
       (element, index) => `
-      <div class="form-check col-12 col-xl-6">
+      <div class="form-check col-12 col-xl-3">
         <input
           class="form-check-input ${teamGroup.slug}"
           type="checkbox"
@@ -167,8 +167,8 @@ function createFieldset(teamGroup) {
   // Add the whole content within the form-system element
   const formSystem = document.getElementById('form-system');
   formSystem.innerHTML += `
-    <fieldset class="form-fieldset ${teamGroup.slug}" disabled>
-      <legend class="fs-5 form-legend text-secondary">${teamGroup.name}</legend>
+    <fieldset class="form-fieldset ${teamGroup.slug}">
+      <legend class="fs-5 form-legend ">${teamGroup.name}</legend>
       <div class="row px-3 ">
         ${teamsHTML}
       </div>
@@ -189,15 +189,11 @@ window.onload = () => {
     );
 
     formFieldsets.forEach((fieldset) => {
-      fieldset.disabled = true;
-      fieldset.querySelector('.form-legend').classList.add('text-secondary');
+      fieldset.style.display = 'none';
     });
 
     if (targetRadio.checked) {
-      targetFieldset.disabled = false;
-      targetFieldset
-        .querySelector('.form-legend')
-        .classList.remove('text-secondary');
+      targetFieldset.style.display = 'block';
     }
   }
 
@@ -241,9 +237,9 @@ window.onload = () => {
     console.log(JSON.stringify(jsonObject, null, 2)); // Display the JSON object in the console (you can modify this part as needed)
 
     formFieldsets.forEach((fieldset) => {
-      fieldset.disabled = true;
-      fieldset.querySelector('.form-legend').classList.add('text-secondary');
+      fieldset.style.display = 'none';
     });
+
     form.reset();
     // You can perform further actions with the JSON object here, such as sending it to a server or manipulating it as desired.
   }
